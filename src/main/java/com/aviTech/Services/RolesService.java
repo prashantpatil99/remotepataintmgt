@@ -17,14 +17,16 @@ public class RolesService {
     @Autowired
     private RolesRepository rolesRepository;
 
-    public void saveRoleService(Roles roles){
+    public Roles saveRoleService(Roles roles){
+       // Roles roles1=null;
         try{
             log.info("inside saveRoleService()");
             rolesRepository.save(roles);
-
+            log.info("Role saved {}",roles);
         }catch(Exception e){
             e.printStackTrace();
         }
+        return roles;
     }
 
     public List<Roles> getAllRoles(){

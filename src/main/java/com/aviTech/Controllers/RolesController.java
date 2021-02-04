@@ -21,14 +21,15 @@ public class RolesController {
     private RolesService rolesService;
 
     @PostMapping("/saveRole")
-    public String saveRoleController(@RequestBody Roles roles){
+    public Roles saveRoleController(@RequestBody Roles roles){
+        Roles roles1=null;
         try{
-            rolesService.saveRoleService(roles);
+            roles1=rolesService.saveRoleService(roles);
             log.info("Saved Role={}",roles.getRoleType());
         }catch(Exception e){
             e.printStackTrace();
         }
-        return "Saved Role is:=" + roles.getRoleType();
+        return  roles1;
     }
 
     @GetMapping("/getAllRoles")
