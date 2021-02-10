@@ -39,4 +39,16 @@ public class RolesServiceTest {
         when(rolesRepository.save(r)).thenReturn(r);
         assertEquals(r,rolesService.saveRoleService(r));
     }
+
+    @Test
+    public void deleteRoleTest(){
+        long id=1;
+        Roles r=new Roles(1,"Admin" ,"Prashant Patil","03-FEB-2021","Prashant Patil","03-FEB-2021");
+
+       // rolesService.saveRoleService(r);
+        rolesService.deleteById(id);
+        verify(rolesRepository,times(1)).deleteById(id);
+        //verify(rolesRepository.deleteById(id),times(1)).deleteById(id);
+
+    }
 }
