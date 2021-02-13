@@ -87,7 +87,7 @@ public class RolesService {
 
 
     public Roles editRole(Roles roles){
-        Optional<Roles> r=null;
+
         Roles existingData=null;
         try{
             existingData=rolesRepository.getOne(roles.getRoleId());
@@ -100,7 +100,7 @@ public class RolesService {
                 existingData.setCreatedBy(roles.getCreatedBy());
                 existingData.setLastModifiedBy(roles.getLastModifiedBy());
                 existingData.setLastModifiedOn(roles.getLastModifiedOn());
-                rolesRepository.save(existingData); //role isd is taken from the db we just add editable fields only
+                rolesRepository.save(existingData); //role id is taken from the db we just add editable fields only
                 log.info("=====================Role is updated==========================");
             }
 

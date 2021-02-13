@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -27,6 +28,17 @@ public class UsersController {
         return "saved User is:="+users.getName();
     }
 
+    @GetMapping("/getAllUsers")
+    public List<Users> getAllUsers(){
+        List<Users> users=null;
+        try{
+            users=usersService.getAllUsersService();
+        }catch(Exception e){
+            log.error("Exception occurs in getAllUsers() ",e);
+        }
+        return users;
+    }
+
     @DeleteMapping("/deleteUserById/{id}")
     public Optional<Users> deletebyId(@PathVariable long id){
         Optional<Users> user=null;
@@ -37,6 +49,19 @@ public class UsersController {
             e.printStackTrace();
         }
         return user;
+    }
+
+    @PutMapping("/editUser")
+    public String editUser(@RequestBody  Users users){
+        Users updateUser=null;
+
+        try{
+            log.info("Requesting for edit existing user ,{}",users);
+            updateUser=usersService.editUserService(users);
+        }catch(Exception e){
+
+        }
+        return updateUser.toString();
     }
 
 
